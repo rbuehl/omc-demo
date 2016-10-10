@@ -30,9 +30,13 @@ app.use(bodyParser.json());
 // POST method route
 app.post('/api/metrics', function (req, res) {
   console.log("req: %j", req.body);
-  counter.labels('name').inc(); // Inc with 1
+  counter.labels(req.body.item).inc(); // Inc with 1
   res.sendStatus(200);
 });
+
+app.get('/metrics', function (req, res){
+  res.send(client.register.metrics());
+})
 
 // universal routing and rendering
 app.get('*', (req, res) => {
