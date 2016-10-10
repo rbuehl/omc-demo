@@ -9,6 +9,10 @@ import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import NotImplementedPage from './components/NotImplementedPage';
 
+var client = require('prom-client');
+var bodyParser = require('body-parser')
+var counter = new client.Counter('item_count', 'Item', ['name']);
+
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const server = new Server(app);
@@ -17,6 +21,18 @@ app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+// POST method route
+app.post('/api/metrics', function (req, res) {
+  console.log("req: %j", req.body);
+  counter.labels('name').inc(); // Inc with 1
+  res.sendStatus(200);
+});
 
 // universal routing and rendering
 app.get('*', (req, res) => {
