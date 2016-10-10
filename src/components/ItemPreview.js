@@ -10,9 +10,9 @@ export default class ItemPreview extends React.Component {
 
   render() {
     return (
-      <div className="item-preview" onClick={this.add}>
-        <img src={`img/${this.props.image}`} width="150px"/>
-        <h2 className="name">{this.props.name}</h2>
+      <div className="col-xs-4" onClick={this.add}>
+        <h5 className="name">{this.props.name}</h5>
+        <img src={`img/${this.props.image}`} width="70px"/>
       </div>
     );
   }

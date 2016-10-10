@@ -6,9 +6,27 @@ import items from '../data/items';
 export default class IndexPage extends React.Component {
   render() {
     return (
-      <div className="home">
-        <div className="item-selector">
-          {items.map(itemData => <ItemPreview key={itemData.name} {...itemData} />)}
+
+      <div>
+        <div className="jumbotron row">
+            {items.map(itemData => <ItemPreview key={itemData.name} {...itemData} />)}
+        </div>
+        <br/><br/>
+        <h3>How do you want to pay?</h3>
+        <div className="row">
+          <div className="col-xs-1"></div>
+          <div className="col-xs-8">
+            <div className="jumbotron">
+              <div className="row">
+                <div className="col-xs-1"></div>
+                <a className="btn btn-info col-xs-4">Visa</a>
+                <div className="col-xs-2"></div>
+                <a className="btn btn-info col-xs-4">paypal</a>
+                <div className="col-xs-1"></div>
+              </div>
+            </div>
+          </div>
+          <div className="col-xs-3"></div>
         </div>
       </div>
     );
