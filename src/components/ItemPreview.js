@@ -19,7 +19,7 @@ export default class ItemPreview extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "item": item
+        "item": item //this.props.name n/a
       })
     });
   }
