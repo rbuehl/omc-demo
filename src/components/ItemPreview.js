@@ -3,20 +3,25 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default class ItemPreview extends React.Component {
+  constructor() {
+    super();
+    this.add = this.add.bind(this);
+  }
 
   add() { // (3)
     console.log('Button pressed;');
-    fetch('https://mywebsite.com/endpoint/', {
+    console.log('this:' + this.props.name);
+    var item = this.props.name;
+    fetch('/api/metrics', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        firstParam: 'yourValue',
-        secondParam: 'yourOtherValue',
+        "item": item
       })
-    })
+    });
   }
 
   render() {

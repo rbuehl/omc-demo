@@ -10,6 +10,8 @@ export default class IndexPage extends React.Component {
       <div>
         <div className="row">
           <h3>Choose your Item:</h3>
+        </div>
+        <div className="row">
           <div className="col-xs-1"></div>
           <div className="jumbotron col-xs-8">
               {items.map(itemData => <ItemPreview key={itemData.name} {...itemData} />)}
